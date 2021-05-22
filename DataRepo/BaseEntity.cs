@@ -6,7 +6,7 @@ namespace DataRepo
     public class BaseEntity<TKey> : IBaseEntity<TKey>
     {
         [PrimaryKey]
-        public virtual TKey Id { get; set; }
+        public virtual TKey Id { get; internal set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
 
@@ -14,14 +14,14 @@ namespace DataRepo
         {
             try
             {
-                var json = Newtonsoft.Json.JsonConvert.SerializeObject(this);
-                return json;
+                return System.Text.Json.JsonSerializer.Serialize(this);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return base.ToString();
             }
             
         }
+
     }
 }

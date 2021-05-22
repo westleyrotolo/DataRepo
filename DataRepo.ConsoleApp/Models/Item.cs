@@ -9,10 +9,6 @@ namespace DataRepo.ConsoleApp.Models
         {
         }
 
-        [PrimaryKey]
-        [AutoIncrement]
-        public override int Id { get; set; }
-
         public string Title { get; set; }
 
     }
