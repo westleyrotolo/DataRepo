@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.Json;
 using SQLite;
 
 namespace DataRepo
@@ -6,7 +7,7 @@ namespace DataRepo
     public class BaseEntity<TKey> : IBaseEntity<TKey>
     {
         [PrimaryKey]
-        public virtual TKey Id { get; internal set; }
+        public virtual TKey Id { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
 
@@ -14,7 +15,7 @@ namespace DataRepo
         {
             try
             {
-                return System.Text.Json.JsonSerializer.Serialize(this);
+                return JsonSerializer.Serialize(this);
             }
             catch (Exception)
             {
